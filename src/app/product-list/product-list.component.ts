@@ -13,10 +13,12 @@ export class ProductListComponent implements OnInit {
   products: Observable<Product[]>;
 
   constructor(private productService: ProductService,
-    private router: Router) { }
+    private router: Router) {
+  }
 
   ngOnInit(): void {
     this.reloadData();
+    console.log("init");
   }
 
   reloadData(): void{
