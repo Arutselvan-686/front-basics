@@ -4,11 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
 
 @Component({
-  selector: 'app-product-details',
-  templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css']
+  selector: 'app-update-product',
+  templateUrl: './update-product.component.html',
+  styleUrls: ['./update-product.component.css']
 })
-export class ProductDetailsComponent implements OnInit {
+export class UpdateProductComponent implements OnInit {
 
   id: number;
   product: Product;
@@ -28,8 +28,19 @@ export class ProductDetailsComponent implements OnInit {
       }, error => console.log(error));
   }
 
-  list(){
-    this.router.navigate(['products']);
+  updateProduct() {
+    this.productService.updateProduct(this.id, this.product)
+      .subscribe(data => console.log(data), error => console.log(error));
+    this.product = new Product();
+    this.gotoList();
+  }
+
+  onSubmit() {
+    this.updateProduct();
+  }
+
+  gotoList() {
+    this.router.navigate(['/products']);
   }
 
 }
